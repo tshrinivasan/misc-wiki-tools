@@ -14,14 +14,14 @@ def main(argv):
    try:
       opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
       if opts == []:
-	print 'Usage: fix-hash.py  -i <inputfile> -o <outputfile>'
+	print 'Usage: add-square-bracket-both-side.py -i <inputfile> -o <outputfile>'
         sys.exit(2)
    except getopt.GetoptError:
-      print 'Usage: fix-hash.py -i <inputfile> -o <outputfile>'
+      print 'Usage: add-square-bracket-both-side.py -i <inputfile> -o <outputfile>'
       sys.exit(2)
    for opt, arg in opts:
       if opt == '-h':
-         print 'fix-hash.py -i <inputfile> -o <outputfile>'
+         print 'add-square-bracket-both-side.py -i <inputfile> -o <outputfile>'
          sys.exit()
       elif opt in ("-i", "--ifile"):
          inputfile = arg
@@ -33,12 +33,10 @@ def main(argv):
    input_file = open(inputfile,'r')
    output_file = open(outputfile,'w')
 
-   newline = ''
    for line in input_file:
-	if 'subsp' in line:
-		newline = "#:" + line
-	if 'var' in line:
-		newline = "#:" + line
+	newline = "[[" + line 
+	newline = newline.replace("\n","]]\n")
+
         output_file.write(newline)
 
    input_file.close()
