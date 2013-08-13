@@ -34,16 +34,39 @@ def main(argv):
    output_file = open(outputfile,'w')
 
    newline = ''
+	
+   subsp = 0
+   var = 0
+   lines = 0
+   hashes = 0
+
    for line in input_file:
 	if 'subsp' in line:
 		newline = "#:" + line
-	if 'var' in line:
+		subsp = subsp + 1
+	elif 'var' in line:
 		newline = "#:" + line
+		var = var + 1
+	else:
+		newline = line
+		hashes = hashes + 1
+
         output_file.write(newline)
+	lines = lines + 1
 
    input_file.close()
    output_file.close()   
    
    print "Done. Check the output file " + outputfile
+
+   print "Total lines = " + str(lines)
+   print "Total Subsp = " + str(subsp)
+   print "Total Var = " + str(var)
+   print "Total Hash = " + str(hashes)
+  
+
+   print str(hashes), '+', str(subsp),' +' , str(var), "   = " +  str(hashes + var + subsp)
+
+
 if __name__ == "__main__":
    main(sys.argv[1:])
